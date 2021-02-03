@@ -123,7 +123,10 @@
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0",
     "webpack-merge": "^5.0.9",
-    "webpackbar": "^4.0.0"
+    "webpackbar": "^4.0.0",
+    "compression-webpack-plugin": "6.1.1",
+    "happypack": "^5.0.1",
+    "useless-files-webpack-plugin": "^1.0.1"
   },
   "dependencies": {
     "react": "^17.0.1",

@@ -1,4 +1,5 @@
-const { resolve } = require('path')
+const path = require('path')
+
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 const WebpackBar = require('webpackbar')
@@ -7,7 +8,15 @@ const HardSourceWebpackPlugin = require('hard-source-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const HappyPack = require('happypack')
+const CompressionWebpackPlugin = require('compression-webpack-plugin')
+const UselessFile = require('useless-files-webpack-plugin')
+const os = require('os')
+
+const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length })
 const { isDev, PROJECT_PATH, IS_OPEN_HARD_SOURCE } = require('../constants')
+
+const {resolve} = path
 
 const getCssLoaders = (importLoaders) => [
   isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
@@ -61,8 +70,9 @@ module.exports = {
     rules: [
       {
         test: /\.(tsx?|js)$/,
-        loader: 'babel-loader',
-        options: { cacheDirectory: true },
+        // loader: 'babel-loader',
+        loader: 'happypack/loader?id=happyBabel',
+        // options: { cacheDirectory: true },
         exclude: /node_modules/,
       },
       {
@@ -158,6 +168,29 @@ module.exports = {
       typescript: {
         configFile: resolve(PROJECT_PATH, './tsconfig.json'),
       },
+    }),
+    new HappyPack({
+      // 用id来标识 happypack处理那里类文件
+      id: 'happyBabel',
+      // 如何处理  用法和loader 的配置一样
+      loaders: [{
+        loader: 'babel-loader',
+        options: { babelrc: true, cacheDirectory: true }
+      }],
+      // 共享进程池
+      threadPool: happyThreadPool,
+      // 允许 HappyPack 输出日志
+      verbose: true,
+    }),
+    new CompressionWebpackPlugin({
+      test: /\.js$|\.tsx?$|\.html$|\.css$/,
+      // 超过4kb压缩
+      threshold: 4096
+    }),
+    new UselessFile({
+      root: path.resolve(__dirname, './src/assets/images'),
+      clean: true,
+      exclude: /node_modules/
     }),
     IS_OPEN_HARD_SOURCE && new HardSourceWebpackPlugin(),
     !isDev && new MiniCssExtractPlugin({
