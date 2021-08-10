@@ -44,11 +44,6 @@
     "react-typescript",
     "react-ts-quick-starter"
   ],
-  "author": {
-    "name": "vortesnail",
-    "url": "https://github.com/vortesnail",
-    "email": "1091331061@qq.com"
-  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/vortesnail/react-ts-quick-starter/issues"
