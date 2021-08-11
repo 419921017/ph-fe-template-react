@@ -62,6 +62,7 @@
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.53",
     "@types/react-dom": "^16.9.8",
+    "@types/react-router-dom": "^5.1.8",
     "@types/webpack-env": "^1.15.2",
     "@typescript-eslint/eslint-plugin": "^4.0.1",
     "@typescript-eslint/parser": "^4.0.1",
@@ -69,6 +70,7 @@
     "babel-loader": "^8.1.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "clean-webpack-plugin": "^3.0.0",
+    "compression-webpack-plugin": "6.1.1",
     "conventional-changelog-cli": "^2.0.34",
     "copy-webpack-plugin": "^6.0.3",
     "cross-env": "^7.0.2",
@@ -86,6 +88,7 @@
     "file-loader": "^6.0.0",
     "fork-ts-checker-webpack-plugin": "^5.0.13",
     "glob": "^7.1.6",
+    "happypack": "^5.0.1",
     "hard-source-webpack-plugin": "^0.13.1",
     "html-webpack-plugin": "^4.3.0",
     "husky": "^4.2.5",
@@ -113,19 +116,22 @@
     "terser-webpack-plugin": "^4.0.0",
     "typescript": "^4.0.3",
     "url-loader": "^4.1.0",
+    "useless-files-webpack-plugin": "^1.0.1",
     "webpack": "^4.43.0",
     "webpack-bundle-analyzer": "^3.8.0",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0",
     "webpack-merge": "^5.0.9",
-    "webpackbar": "^4.0.0",
-    "compression-webpack-plugin": "6.1.1",
-    "happypack": "^5.0.1",
-    "useless-files-webpack-plugin": "^1.0.1"
+    "webpackbar": "^4.0.0"
   },
   "dependencies": {
+    "@types/react-redux": "^7.1.18",
+    "@types/redux": "^3.6.0",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1 "
+    "react-dom": "^17.0.1 ",
+    "react-redux": "^7.2.4",
+    "react-router-dom": "^5.2.0",
+    "redux": "^4.1.1"
   },
   "resolutions": {
     "**/@typescript-eslint/parser": "4.0.1",
